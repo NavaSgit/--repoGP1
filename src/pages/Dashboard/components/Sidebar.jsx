@@ -1,37 +1,36 @@
 import "./Sidebar.css";
 
-function Sidebar() {
+const NAV_ITEMS = [
+  { id: "inicio", label: "🏠 Inicio" },
+  { id: "proyectos", label: "📁 Proyectos" },
+  { id: "tareas", label: "📋 Tareas" },
+  { id: "calendario", label: "📅 Calendario" },
+  { id: "equipo", label: "👥 Equipo" },
+  { id: "personas", label: "🗂️ Personas (BD)" },
+];
+
+function Sidebar({ vistaActiva, onNavigate }) {
   return (
     <aside className="sidebar">
-
       <div className="sidebar-logo">
         <h2>NexusKeep</h2>
       </div>
 
       <nav className="sidebar-nav">
-
-        <a href="#" className="active">
-          🏠 Inicio
-        </a>
-
-        <a href="#">
-          📁 Proyectos
-        </a>
-
-        <a href="#">
-          📋 Tareas
-        </a>
-
-        <a href="#">
-          📅 Calendario
-        </a>
-
-        <a href="#">
-          👥 Equipo
-        </a>
-
+        {NAV_ITEMS.map((item) => (
+          <a
+            key={item.id}
+            href="#"
+            className={vistaActiva === item.id ? "active" : ""}
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate(item.id);
+            }}
+          >
+            {item.label}
+          </a>
+        ))}
       </nav>
-
     </aside>
   );
 }

@@ -31,6 +31,28 @@
   background: #211f42;
   padding: 10px 15px;
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-user-name {
+  white-space: nowrap;
+}
+
+.logout-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #621b7c;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.logout-btn:hover {
+  background: #7a2299;
 }
 
 .dashboard-main {
@@ -66,4 +88,64 @@
   background: #621b7c;
   color: white;
   cursor: pointer;
+}
+/* ===== Estilos compartidos: formularios, vacíos, eliminar ===== */
+
+.add-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 20px;
+  background: #211f42;
+  border-radius: 12px;
+}
+
+.add-form input,
+.add-form select {
+  flex: 1;
+  min-width: 160px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #171633;
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+
+.save-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #621b7c;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.save-btn:hover {
+  background: #7a2299;
+}
+
+.empty-msg {
+  color: #7a7898;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.delete-link {
+  cursor: pointer;
+  color: #b8a8d8;
+}
+
+.delete-link:hover {
+  color: #ff6b6b;
+}
+
+.form-error {
+  width: 100%;
+  color: #ff6b6b;
+  font-size: 13px;
+  margin: 0;
 }

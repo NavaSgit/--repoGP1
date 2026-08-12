@@ -27,12 +27,13 @@
 
 .projects-list {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   margin-top: 25px;
 }
 
 .project-card {
-  flex: 1;
+  flex: 1 1 260px;
   padding: 25px;
   background: #211f42;
   border-radius: 12px;
