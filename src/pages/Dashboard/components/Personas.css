@@ -1,0 +1,84 @@
+.personas-container {
+  width: 100%;
+}
+
+.personas-toolbar {
+  margin-bottom: 16px;
+}
+
+.personas-search {
+  width: 100%;
+  max-width: 360px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+  color: #1a1a1a;
+}
+
+.personas-error {
+  color: #c0392b;
+  background: #fdecea;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-size: 13px;
+}
+
+.personas-loading {
+  color: #666;
+  font-size: 14px;
+}
+
+.personas-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.personas-table th,
+.personas-table td {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 13px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #1a1a1a;
+}
+
+.personas-table th {
+  background: #621b7c;
+  color: white;
+  font-weight: 600;
+}
+
+.personas-vacio {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+}
+
+.personas-paginacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+  font-size: 13px;
+}
+
+.personas-paginacion button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
+
+.personas-paginacion button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

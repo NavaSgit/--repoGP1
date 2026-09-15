@@ -1,0 +1,8 @@
+{
+  "appService.zipIgnorePattern": [
+    "node_modules{,/**}",
+    ".vscode{,/**}"
+  ],
+  "appService.deploySubpath": ".",
+  "appService.defaultWebAppToDeploy": "/subscriptions/398aec32-9cea-4140-ba91-8f5fe9c7b180/resourceGroups/rg-logingp1/providers/Microsoft.Web/sites/NexxusKeepMain"
+}
