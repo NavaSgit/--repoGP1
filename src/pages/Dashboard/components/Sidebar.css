@@ -1,37 +1,109 @@
 .sidebar {
-  width: 240px;
+  width: 250px;
   min-height: 100vh;
-  background: #171633;
-  color: white;
-  padding: 25px 15px;
+  background: linear-gradient(180deg, #1b1430 0%, #120d20 100%);
+  color: #b9b4d9;
+  padding: 28px 16px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(170, 59, 255, 0.25), transparent 70%);
+  bottom: -120px;
+  left: -80px;
+  pointer-events: none;
+  filter: blur(10px);
 }
 
 .sidebar-logo {
-  padding: 0 15px;
+  padding: 0 12px;
   margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
 }
 
 .sidebar-logo h2 {
   margin: 0;
-  color: white;
+  font-size: 21px;
+  background: linear-gradient(135deg, #d9a8ff, #aa3bff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
 }
 
 .sidebar-nav a {
-  color: #b8b6d9;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #b9b4d9;
   text-decoration: none;
-  padding: 12px 15px;
-  border-radius: 8px;
-  transition: 0.2s;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 15.5px;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
-.sidebar-nav a:hover,
+.sidebar-icon {
+  display: inline-flex;
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+}
+
+.sidebar-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar-nav a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
 .sidebar-nav a.active {
-  background: #621b7c;
-  color: white;
+  background: linear-gradient(135deg, #aa3bff, #7a2299);
+  color: #ffffff;
+}
+
+.sidebar-nav a:focus-visible {
+  outline: 2px solid #c084fc;
+  outline-offset: 2px;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 16px 14px 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #6f6a91;
+  font-size: 13px;
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar-footer-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
 }

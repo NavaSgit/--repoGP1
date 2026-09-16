@@ -3,6 +3,7 @@ import {
   obtenerUsuariosRegistrados,
   guardarUsuarioRegistrado,
 } from "../utils/localUsuarios";
+import { IconEye, IconEyeOff } from "../icons";
 import {
   errorStyle,
   inputStyle,
@@ -33,7 +34,6 @@ function RegisterForm({ onRegistroExitoso, onIrALogin }) {
     let esValido = true;
     const usuarios = obtenerUsuariosRegistrados();
 
-    // Usuario
     if (regUsuario.trim().length < 3) {
       setRegUsuarioError("El usuario debe tener al menos 3 caracteres");
       esValido = false;
@@ -47,7 +47,6 @@ function RegisterForm({ onRegistroExitoso, onIrALogin }) {
       setRegUsuarioError("");
     }
 
-    // Correo
     if (!CORREO_REGEX.test(regCorreo)) {
       setRegCorreoError("Ingresa un correo electrónico válido");
       esValido = false;
@@ -58,7 +57,6 @@ function RegisterForm({ onRegistroExitoso, onIrALogin }) {
       setRegCorreoError("");
     }
 
-    // Contraseña
     if (regPassword.length < 4) {
       setRegPasswordError("La contraseña debe tener al menos 4 caracteres");
       esValido = false;
@@ -66,7 +64,6 @@ function RegisterForm({ onRegistroExitoso, onIrALogin }) {
       setRegPasswordError("");
     }
 
-    // Confirmación
     if (regConfirmar !== regPassword) {
       setRegConfirmarError("Las contraseñas no coinciden");
       esValido = false;
@@ -88,7 +85,7 @@ function RegisterForm({ onRegistroExitoso, onIrALogin }) {
       password: regPassword,
     });
 
-    alert("Cuenta creada 🎉 Ahora inicia sesión");
+    alert("Cuenta creada. Ahora inicia sesión");
 
     setRegUsuario("");
     setRegCorreo("");
@@ -129,7 +126,7 @@ function RegisterForm({ onRegistroExitoso, onIrALogin }) {
           style={inputStyle}
         />
         <span onClick={() => setShowRegPass(!showRegPass)} style={eyeStyle}>
-          {showRegPass ? "🙈" : "👁️"}
+          {showRegPass ? <IconEyeOff /> : <IconEye />}
         </span>
       </div>
       {regPasswordError && <p style={fieldErrorStyle}>{regPasswordError}</p>}
@@ -141,9 +138,7 @@ function RegisterForm({ onRegistroExitoso, onIrALogin }) {
         onChange={(e) => setRegConfirmar(e.target.value)}
         style={inputStyle}
       />
-      {regConfirmarError && (
-        <p style={fieldErrorStyle}>{regConfirmarError}</p>
-      )}
+      {regConfirmarError && <p style={fieldErrorStyle}>{regConfirmarError}</p>}
 
       <button onClick={handleRegistro} style={buttonStyle}>
         Crear cuenta

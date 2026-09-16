@@ -1,5 +1,16 @@
 import { useEffect, useState } from "react";
 import "./Projects.css";
+const IconStatus = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 20V13M11 20V7M18 20v-5" />
+  </svg>
+);
+
+const IconTrash = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M5 7h14M9.5 7V5.2c0-.6.5-1.2 1.2-1.2h2.6c.7 0 1.2.6 1.2 1.2V7M7 7l.8 12c0 .8.7 1.5 1.5 1.5h5.4c.8 0 1.5-.7 1.5-1.5L17 7" />
+  </svg>
+);
 
 const CLAVE_PROYECTOS = "gp_proyectos";
 
@@ -105,13 +116,15 @@ function Projects() {
               <h3>{p.nombre}</h3>
               <p>{p.descripcion || "Sin descripción"}</p>
 
-              <div className="project-info">
-                <span>📊 {p.estado}</span>
+                            <div className="project-info">
+                <span>
+                  <IconStatus /> {p.estado}
+                </span>
                 <span
                   className="delete-link"
                   onClick={() => handleEliminar(p.id)}
                 >
-                  🗑️ Eliminar
+                  <IconTrash /> Eliminar
                 </span>
               </div>
             </div>

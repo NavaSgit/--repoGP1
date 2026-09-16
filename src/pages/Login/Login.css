@@ -1,79 +1,65 @@
+
 * {
   box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   overflow-x: hidden;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.login-scroll-wrapper {
+  scrollbar-width: none;
+}
+.login-scroll-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
-@media (max-width: 768px) {
-  div[data-left-section] {
-    display: none !important;
+.scroll-indicator svg {
+  animation: bounceDown 1.6s ease-in-out infinite;
+}
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+.scroll-indicator:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+@media (max-width: 600px) {
+  .hero-section-features {
+    flex-direction: column !important;
+    align-items: center !important;
   }
-
-  div[data-right-section] {
-    justify-content: center !important;
-    width: 100% !important;
+}
+@media (max-width: 600px) {
+  .scroll-indicator {
+    right: 20px !important;
+    bottom: 24px !important;
   }
 }
 
 @media (max-width: 480px) {
   .card-responsive {
     width: calc(100% - 30px) !important;
-    padding: 30px 15px !important;
+    padding: 32px 18px !important;
     max-width: 100% !important;
+    border-radius: 18px !important;
   }
-
-  .card-responsive input {
-    font-size: 14px !important;
-    padding: 10px 12px !important;
-  }
-
-  .card-responsive h1 {
-    font-size: 24px !important;
-  }
-
-  .card-responsive button {
-    font-size: 13px !important;
-    padding: 10px !important;
-  }
+  .card-responsive input { font-size: 14px !important; padding: 11px 14px !important; }
+  .card-responsive h1 { font-size: 22px !important; }
+  .card-responsive button { font-size: 13px !important; padding: 11px !important; }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
   .card-responsive {
     width: calc(100% - 40px) !important;
-    padding: 35px 20px !important;
+    padding: 38px 24px !important;
     max-width: 95% !important;
-  }
-
-  .card-responsive input {
-    font-size: 14px !important;
   }
 }
 
 @media (min-width: 769px) {
-  .card-responsive {
-    width: 320px !important;
-    padding: 40px !important;
-  }
-
-  .card-responsive input {
-    font-size: 15px !important;
-  }
+  .card-responsive { width: 360px !important; padding: 44px !important; }
 }

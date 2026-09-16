@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { loginConPersona } from "../../../services/api";
 import { obtenerUsuariosRegistrados } from "../utils/localUsuarios";
+import { IconEye, IconEyeOff, IconMail } from "../icons";
 import {
   errorStyle,
   inputStyle,
@@ -53,14 +54,11 @@ function LoginForm({ onLogin, onIrARegistro, onIrARecuperar }) {
 
     if (!validar()) return;
 
-    // Usuario temporal para pruebas (sin base de datos)
     if (usuario === "admin" && password === "1234") {
       onLogin({ usuario: "admin" });
       return;
     }
 
-    // Intentar validar contra la BD (Person - AdventureWorks2008R2)
-    // usuario: BusinessEntityID o correo | password: apellido (LastName)
     setCargando(true);
 
     try {
@@ -68,13 +66,11 @@ function LoginForm({ onLogin, onIrARegistro, onIrARecuperar }) {
       onLogin({ usuario: persona.usuario });
       return;
     } catch {
-      // Si falla la BD (apagada, sin conexión, credenciales no
-      // encontradas), seguimos con el fallback local abajo.
+      // fallback local abajo
     } finally {
       setCargando(false);
     }
 
-    // Buscar usuario registrado localmente (fallback offline)
     const usuarios = obtenerUsuariosRegistrados();
     const encontrado = usuarios.find(
       (u) => u.usuario === usuario && u.password === password
@@ -113,18 +109,12 @@ function LoginForm({ onLogin, onIrARegistro, onIrARecuperar }) {
           style={inputStyle}
         />
         <span onClick={() => setShowPass(!showPass)} style={eyeStyle}>
-          {showPass ? "🙈" : "👁️"}
+          {showPass ? <IconEyeOff /> : <IconEye />}
         </span>
       </div>
       {passwordError && <p style={fieldErrorStyle}>{passwordError}</p>}
 
-      <button
-        onClick={handleLogin}
-        disabled={cargando}
-        style={buttonStyle}
-        onMouseOver={(e) => (e.target.style.background = "#625a5a")}
-        onMouseOut={(e) => (e.target.style.background = "#621b7c")}
-      >
+      <button onClick={handleLogin} disabled={cargando} style={buttonStyle}>
         {cargando ? "Ingresando..." : "Ingresar"}
       </button>
 
@@ -134,12 +124,8 @@ function LoginForm({ onLogin, onIrARegistro, onIrARecuperar }) {
         <span style={dividerLineStyle} />
       </div>
 
-      <button
-        onClick={handleLoginConCorreo}
-        style={correoButtonStyle}
-        type="button"
-      >
-        <span style={correoIconStyle}>✉️</span>
+      <button onClick={handleLoginConCorreo} style={correoButtonStyle} type="button">
+        <span style={correoIconStyle}><IconMail /></span>
         Ingresar con correo electrónico
       </button>
 

@@ -3,6 +3,7 @@ import {
   obtenerUsuariosRegistrados,
   actualizarPasswordPorCorreo,
 } from "../utils/localUsuarios";
+import { IconEye, IconEyeOff, IconCheckCircle } from "../icons";
 import {
   errorStyle,
   inputStyle,
@@ -86,7 +87,7 @@ function RecoverForm({ onRecuperacionExitosa, onIrALogin }) {
     );
 
     if (actualizado) {
-      alert("Contraseña cambiada exitosamente 🎉");
+      alert("Contraseña cambiada exitosamente");
 
       setRecCorreo("");
       setRecPassword("");
@@ -128,7 +129,8 @@ function RecoverForm({ onRecuperacionExitosa, onIrALogin }) {
       ) : (
         <>
           <p style={recInfoStyle}>
-            Correo verificado ✅
+            <IconCheckCircle />
+            Correo verificado
             <br />
             Ingresa tu nueva contraseña.
           </p>
@@ -143,16 +145,11 @@ function RecoverForm({ onRecuperacionExitosa, onIrALogin }) {
               onChange={(e) => setRecPassword(e.target.value)}
               style={inputStyle}
             />
-            <span
-              onClick={() => setShowRecPass(!showRecPass)}
-              style={eyeStyle}
-            >
-              {showRecPass ? "🙈" : "👁️"}
+            <span onClick={() => setShowRecPass(!showRecPass)} style={eyeStyle}>
+              {showRecPass ? <IconEyeOff /> : <IconEye />}
             </span>
           </div>
-          {recPasswordError && (
-            <p style={fieldErrorStyle}>{recPasswordError}</p>
-          )}
+          {recPasswordError && <p style={fieldErrorStyle}>{recPasswordError}</p>}
 
           <input
             type={showRecPass ? "text" : "password"}
@@ -161,9 +158,7 @@ function RecoverForm({ onRecuperacionExitosa, onIrALogin }) {
             onChange={(e) => setRecConfirmar(e.target.value)}
             style={inputStyle}
           />
-          {recConfirmarError && (
-            <p style={fieldErrorStyle}>{recConfirmarError}</p>
-          )}
+          {recConfirmarError && <p style={fieldErrorStyle}>{recConfirmarError}</p>}
 
           <button onClick={handleCambiarPassword} style={buttonStyle}>
             Cambiar contraseña
