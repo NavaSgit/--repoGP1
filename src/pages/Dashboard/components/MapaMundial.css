@@ -1,0 +1,56 @@
+.mapa-mundial {
+  width: 100%;
+  height: 520px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--code-bg);
+}
+
+.mapa-mundial svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mapa-pais {
+  fill: var(--border);
+  stroke: var(--bg);
+  stroke-width: 0.5;
+  outline: none;
+  transition: fill 0.2s ease;
+}
+
+.mapa-pais:hover {
+  fill: var(--accent-border);
+}
+
+.mapa-punto {
+  fill: var(--accent);
+  stroke: #fff;
+  stroke-width: 1;
+}
+
+.mapa-pulso {
+  fill: var(--accent);
+  opacity: 0.8;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mapa-latido 2s infinite ease-out;
+}
+
+@keyframes mapa-latido {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(3.5);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mapa-pulso {
+    animation: none;
+    opacity: 0.3;
+  }
+}

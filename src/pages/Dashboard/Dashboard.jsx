@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+/* import { useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import Projects from "./components/Projects";
@@ -102,6 +102,101 @@ function Dashboard({ usuario, onLogout }) {
           {vista === "calendario" && <Calendar />}
           {vista === "equipo" && <Team />}
           {vista === "personas" && <Personas />}
+          {vista === "estadisticas" && <EstadisticasPersonas />}
+        </main>
+      </section>
+    </div>
+  );
+}
+
+export default Dashboard;
+ */
+
+import { useState } from "react";
+import Sidebar from "./components/Sidebar";
+import Header from "./components/Header";
+import Projects from "./components/Projects";
+import Tasks from "./components/Tasks";
+import Calendar from "./components/Calendar";
+import Team from "./components/Team";
+import Personas from "./components/Personas";
+import EstadisticasPersonas from "./components/EstadisticasPersonas";
+import Home from "./components/Home";
+import PersonaPerfil from "./components/PersonaPerfil";
+import "./Dashboard.css";
+
+const TITULOS = {
+  inicio: { titulo: "Dashboard", subtitulo: "Resumen general" },
+  proyectos: {
+    titulo: "Proyectos",
+    subtitulo: "Administra tus proyectos actuales",
+  },
+  tareas: { titulo: "Tareas", subtitulo: "Organiza tus pendientes" },
+  calendario: {
+    titulo: "Calendario",
+    subtitulo: "Visualiza tus fechas importantes",
+  },
+  equipo: {
+    titulo: "Equipo",
+    subtitulo: "Gestiona a los miembros de tu equipo",
+  },
+  personas: {
+    titulo: "Personas",
+    subtitulo: "Datos reales desde AdventureWorks2008R2 (esquema Person)",
+  },
+  estadisticas: {
+    titulo: "Estadísticas",
+    subtitulo: "Personas por tipo y por ciudad, desde la base de datos",
+  },
+};
+
+function Dashboard({ usuario, onLogout }) {
+    const [vista, setVista] = useState("inicio");
+  const [personaSeleccionada, setPersonaSeleccionada] = useState(null);
+
+  // Al usar el sidebar se cierra cualquier perfil abierto
+  const handleNavigate = (nuevaVista) => {
+    setPersonaSeleccionada(null);
+    setVista(nuevaVista);
+  };
+
+  return (
+    <div className="dashboard">
+            <Sidebar vistaActiva={vista} onNavigate={handleNavigate} />
+
+      <section className="dashboard-content">
+        <Header
+          titulo={TITULOS[vista].titulo}
+          subtitulo={
+            vista === "inicio"
+              ? `Bienvenido de nuevo, ${usuario.usuario}`
+              : TITULOS[vista].subtitulo
+          }
+          usuario={usuario}
+          onLogout={onLogout}
+        />
+
+        <main className="dashboard-main">
+          {vista === "inicio" && <Home usuario={usuario} />}
+          {vista === "proyectos" && <Projects />}
+          {vista === "tareas" && <Tasks />}
+          {vista === "calendario" && <Calendar />}
+          {vista === "equipo" && <Team />}
+            {vista === "personas" && (
+            <>
+              {/* Explorar queda montado (oculto) para conservar búsqueda, filtro y página */}
+              <div style={{ display: personaSeleccionada ? "none" : "contents" }}>
+                <Personas onVerPerfil={setPersonaSeleccionada} />
+              </div>
+
+              {personaSeleccionada && (
+                <PersonaPerfil
+                  id={personaSeleccionada}
+                  onVolver={() => setPersonaSeleccionada(null)}
+                />
+              )}
+            </>
+          )}
           {vista === "estadisticas" && <EstadisticasPersonas />}
         </main>
       </section>

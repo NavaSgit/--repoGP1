@@ -4,6 +4,7 @@ import "dotenv/config";
 
 import personsRoutes from "./routes/persons.routes.js";
 import authRoutes from "./routes/auth.routes.js";
+import dashboardRoutes from "./routes/dashboard.routes.js";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api/persons", personsRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/dashboard", dashboardRoutes);   
 
 const PORT = process.env.PORT || 4000;
 

@@ -1,16 +1,28 @@
 import { useEffect, useState } from "react";
 import { obtenerPersonas } from "../../../services/api";
+import PersonaCard from "./PersonaCard";
 import "./Personas.css";
 
-function Personas() {
+const FILTROS_TIPO = [
+  { value: "", label: "Todos" },
+  { value: "IN", label: "Individual" },
+  { value: "EM", label: "Empleado" },
+  { value: "GC", label: "Contacto general" },
+  { value: "SC", label: "Contacto de tienda" },
+  { value: "SP", label: "Vendedor" },
+  { value: "VC", label: "Contacto de proveedor" },
+];
+
+function Personas({ onVerPerfil }) {
   const [personas, setPersonas] = useState([]);
   const [search, setSearch] = useState("");
+  const [tipo, setTipo] = useState("");
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState("");
 
-  const pageSize = 15;
+  const pageSize = 25;
 
   useEffect(() => {
     let cancelado = false;
@@ -18,7 +30,7 @@ function Personas() {
     setCargando(true);
     setError("");
 
-    obtenerPersonas({ search, page, pageSize })
+    obtenerPersonas({ search, page, pageSize, type: tipo, sortBy: "lastName" })
       .then((res) => {
         if (cancelado) return;
         setPersonas(res.data);
@@ -26,10 +38,7 @@ function Personas() {
       })
       .catch((err) => {
         if (cancelado) return;
-        setError(
-          err.message ||
-            "No se pudo conectar con el backend/base de datos"
-        );
+        setError(err.message || "No se pudo conectar con el backend/base de datos");
         setPersonas([]);
       })
       .finally(() => {
@@ -39,9 +48,13 @@ function Personas() {
     return () => {
       cancelado = true;
     };
-  }, [search, page]);
+  }, [search, tipo, page]);
 
   const totalPaginas = Math.max(1, Math.ceil(total / pageSize));
+
+  const handleVerPerfil = (id) => {
+    onVerPerfil?.(id);
+  };
 
   return (
     <div className="personas-container">
@@ -56,60 +69,59 @@ function Personas() {
           }}
           className="personas-search"
         />
+
+        <div className="personas-filtros">
+          {FILTROS_TIPO.map((f) => (
+            <button
+              key={f.value}
+              className={`personas-chip${tipo === f.value ? " active" : ""}`}
+              onClick={() => {
+                setTipo(f.value);
+                setPage(1);
+              }}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+
+        <p className="personas-total">
+          {total.toLocaleString()} persona{total !== 1 ? "s" : ""}
+        </p>
       </div>
 
       {error && (
         <p className="personas-error">
-          ⚠️ {error} — verifica que el backend (server/) esté
-          corriendo y conectado a AdventureWorks2008R2.
+          ⚠️ {error} — verifica que el backend esté corriendo y conectado a
+          AdventureWorks.
         </p>
       )}
 
       {cargando ? (
-        <p className="personas-loading">Cargando personas...</p>
+        <p className="empty-msg">Cargando personas...</p>
       ) : (
         <>
-          <table className="personas-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Correo</th>
-                <th>Teléfono</th>
-              </tr>
-            </thead>
-            <tbody>
-              {personas.map((p) => (
-                <tr key={p.BusinessEntityID}>
-                  <td>{p.BusinessEntityID}</td>
-                  <td>{p.FirstName}</td>
-                  <td>{p.LastName}</td>
-                  <td>{p.EmailAddress || "—"}</td>
-                  <td>{p.PhoneNumber || "—"}</td>
-                </tr>
-              ))}
+          <div className="personas-grid">
+            {personas.map((p) => (
+              <PersonaCard
+                key={p.BusinessEntityID}
+                persona={p}
+                onVerPerfil={handleVerPerfil}
+              />
+            ))}
 
-              {personas.length === 0 && !error && (
-                <tr>
-                  <td colSpan={5} className="personas-vacio">
-                    Sin resultados
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+            {personas.length === 0 && !error && (
+              <p className="empty-msg">Sin resultados para este filtro.</p>
+            )}
+          </div>
 
           <div className="personas-paginacion">
-            <button
-              disabled={page <= 1}
-              onClick={() => setPage((p) => p - 1)}
-            >
+            <button disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>
               ← Anterior
             </button>
 
             <span>
-              Página {page} de {totalPaginas} ({total} personas)
+              Página {page} de {totalPaginas} ({total.toLocaleString()} personas)
             </span>
 
             <button

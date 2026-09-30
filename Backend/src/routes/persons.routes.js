@@ -2,7 +2,8 @@ import { Router } from "express";
 import {
   listar,
   obtenerPorId,
-  estadisticas,
+ estadisticas,
+  ubicaciones,
 } from "../controllers/persons.controller.js";
 
 const router = Router();
@@ -11,6 +12,7 @@ const router = Router();
 // interpreta "stats" como si fuera un BusinessEntityID.
 router.get("/stats", estadisticas);
 router.get("/", listar);
+router.get("/:id/ubicaciones", ubicaciones);
 router.get("/:id", obtenerPorId);
 
 export default router;

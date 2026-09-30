@@ -1,0 +1,404 @@
+.perfil-container {
+  /* Paleta propia del perfil: violeta oscuro, no depende del tema del sistema */
+  --p-accent: #c58bff;
+  --p-accent-strong: #9b3df0;
+  --p-accent-bg: rgba(197, 139, 255, 0.16);
+  --p-text-h: #f4eeff;
+  --p-text: #b9aed6;
+  --p-surface: #231a3b;
+  --p-surface-2: #2c2148;
+  --p-border: rgba(197, 139, 255, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 22px;
+  border-radius: 20px;
+  background: linear-gradient(160deg, #1b1430 0%, #120d20 100%);
+}
+
+/* ---------- Volver ---------- */
+.perfil-volver {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid var(--p-border);
+  border-radius: 999px;
+  background: var(--p-surface);
+  color: var(--p-text-h);
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+.perfil-volver svg {
+  width: 16px;
+  height: 16px;
+}
+.perfil-volver:hover {
+  background: var(--p-accent-strong);
+  border-color: var(--p-accent-strong);
+  color: #fff;
+}
+
+/* ---------- Mensajes ---------- */
+.perfil-mensaje {
+  padding: 24px;
+  border: 1px solid var(--p-border);
+  border-radius: 16px;
+  background: var(--p-surface);
+  color: var(--p-text-h);
+  text-align: center;
+}
+.perfil-mensaje-error {
+  color: #ff8fa3;
+}
+
+/* ---------- Encabezado (fondo oscuro fijo, texto blanco) ---------- */
+.perfil-hero {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #5b2a9e 0%, #34205f 60%, #241848 100%);
+  color: #fff;
+  border: 1px solid rgba(197, 139, 255, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.perfil-avatar {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #aa3bff, #7a2fd0);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.perfil-hero-info {
+  min-width: 0;
+}
+.perfil-hero-info h2 {
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.perfil-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.perfil-badge {
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: rgba(170, 59, 255, 0.35);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+}
+.perfil-id {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 12px;
+}
+
+.perfil-hero-contacto {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+.perfil-hero-linea {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 13.5px;
+  word-break: break-all;
+}
+.perfil-hero-linea > svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: #d9b3ff;
+}
+.perfil-hero-vacio {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Resumen ---------- */
+.perfil-resumen {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.perfil-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid var(--p-border);
+  border-radius: 14px;
+  background: var(--p-surface);
+}
+.perfil-stat strong {
+  color: var(--p-accent);
+  font-size: 26px;
+  line-height: 1.1;
+}
+.perfil-stat span {
+  color: var(--p-text);
+  font-size: 12px;
+}
+
+/* ---------- Tarjetas ---------- */
+.perfil-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+.perfil-card {
+  padding: 20px;
+  border: 1px solid var(--p-border);
+  border-radius: 16px;
+  background: var(--p-surface);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+.perfil-card h3 {
+  margin: 0 0 14px;
+  color: var(--p-text-h);
+  font-size: 15px;
+}
+
+.perfil-datos {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 16px;
+}
+.perfil-dato dt {
+  color: var(--p-text);
+  font-size: 11.5px;
+  margin-bottom: 2px;
+}
+.perfil-dato dd {
+  margin: 0;
+  color: var(--p-text-h);
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.perfil-subtitulo {
+  margin: 14px 0 6px;
+  color: var(--p-text);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.perfil-subtitulo:first-of-type {
+  margin-top: 0;
+}
+
+.perfil-linea {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 6px;
+  color: var(--p-text-h);
+  font-size: 14px;
+  word-break: break-all;
+}
+.perfil-linea > svg {
+  width: 16px;
+  height: 16px;
+  color: var(--p-accent);
+  flex-shrink: 0;
+}
+.perfil-linea a {
+  color: var(--p-accent);
+  text-decoration: none;
+}
+.perfil-linea a:hover {
+  text-decoration: underline;
+}
+
+.perfil-tag {
+  padding: 1px 9px;
+  border-radius: 999px;
+  background: var(--p-accent-bg);
+  color: var(--p-accent);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.perfil-vacio {
+  color: var(--p-text);
+  opacity: 0.75;
+  font-size: 13px;
+  margin: 0;
+}
+
+/* ---------- Botón copiar ---------- */
+.perfil-copiar {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--p-text);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+.perfil-copiar svg {
+  width: 15px;
+  height: 15px;
+}
+.perfil-copiar:hover {
+  background: var(--p-accent-bg);
+  color: var(--p-accent);
+}
+.perfil-copiar-claro {
+  color: rgba(255, 255, 255, 0.75);
+}
+.perfil-copiar-claro:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* ---------- Ubicaciones ---------- */
+.perfil-direcciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.perfil-direccion {
+  padding: 14px;
+  border: 1px solid var(--p-border);
+  border-radius: 12px;
+  background: var(--p-surface-2);
+}
+.perfil-direccion p {
+  margin: 2px 0;
+  color: var(--p-text-h);
+  font-size: 13.5px;
+}
+.perfil-direccion .perfil-pais {
+  color: var(--p-text);
+}
+.perfil-direccion-tipo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  color: var(--p-accent);
+  font-size: 12px;
+  font-weight: 600;
+}
+.perfil-direccion-tipo svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ---------- Futuras funcionalidades (deshabilitadas) ---------- */
+.perfil-futuras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.perfil-futura {
+  padding: 6px 14px;
+  border: 1px dashed var(--p-border);
+  border-radius: 999px;
+  background: var(--p-surface-2);
+  color: var(--p-text);
+  font-size: 12.5px;
+  opacity: 0.7;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .perfil-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .perfil-hero-meta,
+  .perfil-hero-contacto {
+    justify-content: center;
+  }
+  .perfil-datos {
+    grid-template-columns: 1fr;
+  }
+  .perfil-resumen {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* ---------- Mapa de ubicaciones ---------- */
+.perfil-mapa {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  height: 480px;
+  margin-bottom: 14px;
+  border: 1px solid var(--p-border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.perfil-mapa .leaflet-container {
+  height: 100%;
+  width: 100%;
+  background: #120d20;
+}
+
+.perfil-mapa-aviso {
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  border: 1px dashed var(--p-border);
+  border-radius: 12px;
+  background: var(--p-surface-2);
+  color: var(--p-text);
+  font-size: 13px;
+}
+
+/* Pin violeta */
+.perfil-pin span {
+  display: block;
+  width: 26px;
+  height: 26px;
+  border-radius: 50% 50% 50% 0;
+  background: #aa3bff;
+  border: 2px solid #fff;
+  transform: rotate(-45deg);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+}
+
+/* Popup (fondo claro por defecto de Leaflet: texto oscuro fijo) */
+.perfil-popup { color: #1f1530; font-size: 13px; line-height: 1.4; }
+.perfil-popup strong { display: block; margin-bottom: 4px; color: #7a2fd0; }
+.perfil-popup p { margin: 0; color: #1f1530; }
+
+.perfil-en-mapa { color: var(--p-accent) !important; font-size: 12px !important; margin-top: 8px !important; }
+.perfil-sin-mapa { color: var(--p-text) !important; font-size: 12px !important; margin-top: 8px !important; opacity: 0.85; }
